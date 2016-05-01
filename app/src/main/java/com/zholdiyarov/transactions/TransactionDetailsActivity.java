@@ -26,6 +26,7 @@ public class TransactionDetailsActivity extends AppCompatActivity {
         textView_total = (TextView) findViewById(R.id.textView_total);
 
         String sku = getIntent().getStringExtra("sku");
+        setTitle("Transactions for " + sku);
 
         ArrayList<Transaction> transactionsForChosenSku = Transactions.getInstance().getListOfTransactionsFor(sku);
 
