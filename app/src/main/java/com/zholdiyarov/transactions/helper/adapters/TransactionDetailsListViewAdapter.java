@@ -8,7 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.zholdiyarov.transactions.R;
-import com.zholdiyarov.transactions.helper.Converter;
+import com.zholdiyarov.transactions.objects.Rates;
+import com.zholdiyarov.transactions.objects.poj.Rate;
 import com.zholdiyarov.transactions.objects.poj.Transaction;
 
 import java.util.ArrayList;
@@ -61,10 +62,10 @@ public class TransactionDetailsListViewAdapter extends BaseAdapter {
         /* DISPLAYS ORIGINAL CURRENCY AND AMOUNT */
         holder.textView_title.setText(transactions.get(position).getAmount() + " " + transactions.get(position).getCurrency());
 
-        Converter converter = new Converter(transactions.get(position).getCurrency(), Double.parseDouble(transactions.get(position).getAmount()));
+        double result = Rates.getInstance().convert(transactions.get(position).getCurrency(), Double.parseDouble(transactions.get(position).getAmount()), "");
 
         /* DISPLAYS CONVERTED AMOUNT */
-        holder.textView_body.setText(String.format("%.1f", converter.convert()) + "GBP");
+        holder.textView_body.setText(String.format("%.1f", result)+ " GBP");
         return rowView;
     }
 
